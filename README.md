@@ -1,2 +1,29 @@
 # SWARAJ-KALE-ICONIC-LENS-
-"I created this portfolio website for a friend, and it was an incredibly fun and fulfilling experience. From designing the layout to bringing it all together, every step of the process was enjoyable. I'm really proud of how it turned out—it's clean, stylish, and truly showcases my design skills. It’s definitely one of the best projects i created.
+# 📸 Iconic Lens – Portfolio Website
+
+Welcome to **Iconic Lens**, a classy, aesthetic, and minimal portfolio website designed for a professional photographer. Built with HTML, CSS, and love, this website highlights elegant visuals, responsive design, and a modern layout.
+
+## 🎯 Features
+- Clean and aesthetic UI
+- Fully responsive across all devices
+- Interactive gallery layout
+- About & quote sections for personality
+- Social media integration
+- Smooth transitions and modern typography
+
+## 🚀 Live Demo
+[Click here to visit the website](#) <!-- Replace with your actual URL once deployed -->
+
+## 🛠️ Tech Stack
+- HTML5
+- CSS3
+- Font Awesome
+- Google Fonts
+
+## 📬 Contact
+- 📧 Email: swarajkale@gmail.com
+- 📞 Phone: +91 8530349455
+
+---
+
+> Designed & developed by [Shubham Gungunwar](#) – because every frame deserves a masterpiece.

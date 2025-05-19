@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iconic Lens - Elegant Portfolio</title>
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #faf8f5;
+      color: #222;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a {
+      color: #b28d5b;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #8c6f3e;
+    }
+
+    /* Container to align all sections */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      background: transparent;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    header.scrolled {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .logo img {
+      height: 90px;
+      filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      color:#444;
+    }
+    nav ul li a {
+      color: #444;
+      padding: 8px 0;
+      position: relative;
+    }
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #b28d5b;
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: url('Images/Banner img.jpg') center center/cover no-repeat;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25); /* reduced opacity for more visible bg */
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      font-family: 'Playfair Display', serif;
+    }
+    .hero-content h1 {
+      font-size: 4.2rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1.1;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.8);
+    }
+    .hero-content h1 span {
+      font-size: 3.5rem;
+      display: inline-block;
+      margin-left: 8px;
+      color: #d4b978;
+      /* GSAP animation handled in script */
+    }
+    .hero-content h3 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 0;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+      font-family: 'Montserrat', sans-serif;
+      color: #f9f7f3;
+    }
+
+    /* Gallery */
+    .gallery {
+      max-width: 1100px;
+      margin: 80px auto 100px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 25px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    /* About Section */
+    .about {
+      background: #fff;
+      max-width: 1100px;
+      margin: 0 auto 100px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      padding: 80px 20px;
+      border-radius: 24px;
+      box-shadow: 0 6px 30px rgba(178,141,91,0.1);
+      flex-wrap: wrap;
+    }
+    .about-img {
+      flex: 1 1 350px;
+      max-width: 350px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(178,141,91,0.15);
+    }
+    .about-img img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      object-fit: cover;
+      aspect-ratio: 3 / 4;
+    }
+    .about-info {
+      flex: 1 1 500px;
+      color: #2a2a2a;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .about-info h2 {
+      font-size: 2.8rem;
+      margin-bottom: 18px;
+      color: #b28d5b;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+    .about-info .subheading {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+    .about-info .location {
+      font-size: 1rem;
+      margin-bottom: 18px;
+      font-weight: 500;
+      color: #777;
+    }
+    .about-info ul {
+      list-style: disc inside;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #444;
+    }
+    .about-info ul li {
+      margin-bottom: 8px;
+    }
+    .about-info .signature {
+      font-style: italic;
+      font-size: 1rem;
+      color: #666;
+      letter-spacing: 0.02em;
+    }
+
+    /* Quote Section */
+    .quote-section {
+      max-width: 900px;
+      margin: 0 auto 100px;
+      background: #f9f7f3;
+      border-left: 6px solid #b28d5b;
+      padding: 40px 30px;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: #444;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-radius: 14px;
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .quote-section::before {
+      content: "“";
+      font-size: 5rem;
+      color: #b28d5b;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-family: 'Georgia', serif;
+      opacity: 0.2;
+    }
+    .quote-source {
+      margin-top: 25px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #b28d5b;
+      text-align: right;
+    }
+
+    /* Footer */
+    footer {
+      background: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      font-family: 'Georgia', serif;
+      color: #444;
+      border-top: 1px solid #ddd;
+    }
+    footer h2 {
+      font-weight: 700;
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+      color: #b28d5b;
+    }
+    footer nav a {
+      margin: 0 18px;
+      font-size: 1rem;
+      color: #666;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+    footer nav a:hover {
+      color: #b28d5b;
+    }
+    footer address {
+      margin: 15px 0;
+      font-style: normal;
+      font-size: 1rem;
+      color: #666;
+    }
+    footer address a {
+      color: #b28d5b;
+      text-decoration: none;
+    }
+    .social-icons {
+      margin: 25px 0;
+    }
+    .social-icons a {
+      color: #666;
+      margin: 0 12px;
+      font-size: 22px;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+    }
+    .social-icons a:hover {
+      color: #b28d5b;
+      transform: scale(1.2);
+    }
+    footer .credit {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #b28d5b;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+      .about-img, .about-info {
+        max-width: 100%;
+      }
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+      .hero-content h1 span {
+        font-size: 2.4rem;
+      }
+      .hero-content h3 {
+        font-size: 1.4rem;
+      }
+      nav ul {
+        gap: 15px;
+        font-size: 0.9rem;
+      }
+      header {
+        padding: 15px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <div class="logo">
+      <img src="Images/ICONIC_LOGO-removebg-preview.png" alt="Iconic Lens Logo" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+         <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>
+        ICONIC <span>LENS</span>
+      </h1>
+      <h3>Capturing The Movements With Iconic Lens 🦄</h3>
+      <!-- Removed the yellow button here -->
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery container">
+    <!-- Gallery images -->
+    <img src="Images/main 1.jpg" alt="Gallery Image 1" />
+    <img src="Images/IMG 5.jpg" alt="Gallery Image 2" />
+    <img src="Images/main 3.jpg" alt="Gallery Image 3" />
+    <img src="Images/main 4.jpg" alt="Gallery Image 4" />
+    <img src="Images/main 5.jpg" alt="Gallery Image 5" />
+    <img src="Images/IMG 2.jpg" alt="Gallery Image 6" />
+
+  </section>
+
+  <section id="about" class="about container">
+    <div class="about-img">
+      <img src="Images/Portal img.jpg" alt="Portrait of Owner" />
+    </div>
+    <div class="about-info">
+    <h2>Swaraj Kale</h2>
+    <p class="subheading">Professional Photographer</p>
+    <p class="location">Based in Nagpur, Maharashtra</p>
+    <ul>
+      <li>10+ years of experience in portrait and landscape photography</li>
+      <li>Published in major international magazines</li>
+      <li>Recipient of multiple photography awards</li>
+      <li>Specializes in natural light and candid moments</li>
+    </ul>
+      <p class="signature">— The Iconic Lens</p>
+    </div>
+  </section>
+
+  <section class="quote-section container">
+    “Elegance is not about being noticed, it’s about being remembered.”
+    <div class="quote-source">— Swaraj Kale </div>
+  </section>
+
+  <footer id="contact">
+  <h2>ICONIC LENS ✨🦄</h2>
+  <nav>
+    <a href="mailto:shubhamgungunwar07@gmail.com">Email</a>
+    <a href="tel:+1234567890">Phone</a>
+    <a href="https://www.instagram.com/_iconic_lens_001" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.facebook.com/share/1BzSw5aDu7/" target="_blank" rel="noopener noreferrer">Facebook</a>
+  </nav>
+  <address>
+    SWARAJ KALE 📸
+  </address>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/share/1BzSw5aDu7/" target="_blank" aria-label="Facebook" rel="noopener noreferrer">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5a3.5 3.5 0 0 1 3.75-3.75h2.25v3h-1.5a1.5 1.5 0 0 0-1.5 1.5V12H18l-.5 3h-3v7A10 10 0 0 0 22 12"/></svg>
+    </a>
+    <a href="https://www.instagram.com/_iconic_lens_001" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
+    </a>
+  </div>
+  <div class="credit"><a href="https://www.linkedin.com/in/shubham-gungunwar-010536325/
+   " target="_blank" >© Made By ❤️ Of Shubham Gungunwar</a></div>
+</footer>
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    // Header background toggle on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero animations
+    gsap.from(".hero-content h1", {
+      duration: 1.6,
+      y: 50,
+      opacity: 0,
+      ease: "power3.out",
+    });
+    gsap.from(".hero-content h1 span", {
+      duration: 1.8,
+      x: 30,
+      opacity: 0,
+      delay: 0.4,
+      ease: "power3.out",
+    });
+    gsap.from(".hero-content h3", {
+      duration: 1.4,
+      y: 30,
+      opacity: 0,
+      delay: 0.8,
+      ease: "power3.out",
+    });
+
+    // Gallery image fade-in on scroll
+    gsap.utils.toArray(".gallery img").forEach((img) => {
+      gsap.from(img, {
+        scrollTrigger: {
+          trigger: img,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+        opacity: 0,
+        y: 30,
+        duration: 1,
+        ease: "power2.out",
+      });
+    });
+
+    // About section slide in
+    gsap.from(".about-img", {
+      scrollTrigger: {
+        trigger: ".about",
+        start: "top 80%",
+      },
+      x: -100,
+      opacity: 0,
+      duration: 1.4,
+      ease: "power3.out",
+    });
+    gsap.from(".about-info", {
+      scrollTrigger: {
+        trigger: ".about",
+        start: "top 80%",
+      },
+      x: 100,
+      opacity: 0,
+      duration: 1.4,
+      ease: "power3.out",
+      delay: 0.3,
+    });
+
+    // Quote section fade in
+    gsap.from(".quote-section", {
+      scrollTrigger: {
+        trigger: ".quote-section",
+        start: "top 90%",
+      },
+      opacity: 0,
+      y: 50,
+      duration: 1.2,
+      ease: "power2.out",
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <a href="index.html">← Back to Home</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery - Iconic Lens</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background: #faf8f5;
+      color: #222;
+    }
+
+    header {
+      background: #fff;
+      padding: 20px 40px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      color: #b28d5b;
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .gallery-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-container img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-container img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox overlay */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox::after {
+      content: '✕';
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin: 40px auto 20px;
+      font-size: 1.2rem;
+      color: #b28d5b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Iconic Lens 📸 | Gallery</h1>
+</header>
+
+<section class="gallery-container">
+  <!-- 20 Images -->
+  <img src="Images/IMG 1.jpg" alt="Gallery 1" />
+  <img src="Images/IMG 18.jpg" alt="Gallery 2" />
+  <img src="Images/IMG 3.jpg" alt="Gallery 3" />
+  <img src="Images/IMG 4.jpg" alt="Gallery 4" />
+  <img src="Images/main 6.jpg" alt="Gallery 5" />
+  <img src="Images/IMG 6.jpg" alt="Gallery 6" />
+  <img src="Images/IMG 7.jpg" alt="Gallery 7" />
+  <img src="Images/IMG 8.jpg" alt="Gallery 8" />
+  <img src="Images/IMG 9.jpg" alt="Gallery 9" />
+  <img src="Images/IMG 10.jpg" alt="Gallery 10" />
+  <img src="Images/IMG 11.jpg" alt="Gallery 11" />
+  <img src="Images/IMG 12.jpg" alt="Gallery 12" />
+  <img src="Images/IMG 13.jpg" alt="Gallery 13" />
+  <img src="Images/IMG 14.jpg" alt="Gallery 14" />
+  <img src="Images/IMG 15.jpg" alt="Gallery 15" />
+  <img src="Images/IMG 16.jpg" alt="Gallery 16" />
+  <img src="Images/IMG 17.jpg" alt="Gallery 17" />
+  <img src="Images/IMG 20.jpg" alt="Gallery 18" />
+  <img src="Images/IMG 19.jpg" alt="Gallery 19" />
+  <img src="Images/main 2.jpg" alt="Gallery 20" />
+</section>
+
+<a href="index.html" class="back-home">← Back to Home</a>
+
+<footer>
+  © 2025 Iconic Lens by Swaraj Kale 🦄 | Designed by Shubham Gungunwar ❤️
+</footer>
+
+<!-- Lightbox Container -->
+<div class="lightbox" id="lightbox">
+  <img src="" alt="Preview" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const galleryImages = document.querySelectorAll('.gallery-container img');
+
+  galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+  });
+</script>
+
+</body>
+</html>
